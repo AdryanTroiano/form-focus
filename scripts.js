@@ -51,4 +51,29 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Formulário enviado com sucesso!");
         });
     }
+
+    function limparFormulario() {
+        if (!formulario) return;
+
+        const inputs = formulario.querySelectorAll("input, textarea");
+        inputs.forEach(input => {
+            input.value = "";
+            input.classList.remove("erro-input");
+            input.style.borderColor = "";
+
+            const erroMsg = document.getElementById(`erro-${input.id}`);
+            if (erroMsg) {
+                erroMsg.style.display = "none";
+            }
+        });
+
+        if (contador) {
+            contador.textContent = "0";
+        }
+    }
+
+    const botaoLimpar = document.getElementById("btn-limpar");
+    if (botaoLimpar) {
+        botaoLimpar.addEventListener("click", limparFormulario);
+    }
 });
