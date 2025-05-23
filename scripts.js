@@ -8,11 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     contador.textContent = mensagemInput.value.length;
-});
 
-
-
-document.addEventListener("DOMContentLoaded", function () {
     const inputs = document.querySelectorAll("input");
 
     inputs.forEach(input => {
@@ -27,23 +23,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         input.addEventListener("blur", function () {
+            const erroMsg = document.getElementById(`erro-${this.id}`);
+
             if (this.value.trim() === "") {
                 this.classList.add("erro-input");
+                this.style.borderColor = "red";
 
-                const erroMsg = document.getElementById(`erro-${this.id}`);
                 if (erroMsg) {
                     erroMsg.textContent = "Campo não pode estar vazio";
                     erroMsg.style.display = "block";
                 }
             } else {
                 this.classList.remove("erro-input");
-                this.style.borderColor = "#ccc";
+                this.style.borderColor = "green";
 
-                const erroMsg = document.getElementById(`erro-${this.id}`);
                 if (erroMsg) {
                     erroMsg.style.display = "none";
                 }
             }
         });
     });
+
+    const formulario = document.getElementById("meu-formulario");
+    if (formulario) {
+        formulario.addEventListener("submit", function (e) {
+            e.preventDefault();
+            alert("Formulário enviado com sucesso!");
+        });
+    }
 });
